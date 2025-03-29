@@ -1,0 +1,26 @@
+module EXTEND_UNIT 
+(
+	input [31:7] Ins,				// Range contaim Immediate
+	input [1:0] ImmSrc,			// Select which range contain Immediate
+	output [31:0] ImmExt			// Output of full Immediate
+);
+
+/*
+
+					|--------------------|-----------|-----------|
+					|	 		ImmSrc		|		s1		|		S0		|
+					|--------------------|-----------|-----------|
+					|			LOCKED		|		0		|		0		|
+					|--------------------|-----------|-----------|
+					|		SHIFT RIGHT		|		1		|		0		|
+					|--------------------|-----------|-----------|
+					|		SHIFT LEFT		|		0		|		0		|
+					|--------------------|-----------|-----------|
+					|	PARALLEL LOADING	|		1		|		0		|
+					|--------------------|-----------|-----------|
+
+
+*/
+
+
+endmodule 

@@ -1,0 +1,91 @@
+`timescale 1ps/1ps
+module COMPARATOR_32bits_TB;
+
+    // Declare input and output signals
+    logic [31:0] A, B;
+    logic EQ, NE, GT, LE, LT, GE;
+
+    // Instantiate the Device Under Test (DUT) without parameter override
+    COMPARATOR_32bits dut (
+        .A(A),
+        .B(B),
+        .EQ(EQ),
+        .NE(NE),
+        .GT(GT),
+        .LE(LE),
+        .LT(LT),
+        .GE(GE)
+    );
+
+    integer i;
+    integer pass_count = 0;
+    integer fail_count = 0;
+
+    // Function to check outputs against expected values
+    task check_outputs;
+        input [31:0] A_in, B_in;
+        input exp_EQ, exp_NE, exp_GT, exp_LE, exp_LT, exp_GE;
+        begin
+            if (EQ !== exp_EQ || NE !== exp_NE || GT !== exp_GT || 
+                LE !== exp_LE || LT !== exp_LT || GE !== exp_GE) begin
+                $display("Incorrect result at A = %h, B = %h", A_in, B_in);
+                $display("Expected: EQ=%b, NE=%b, GT=%b, LE=%b, LT=%b, GE=%b", 
+                         exp_EQ, exp_NE, exp_GT, exp_LE, exp_LT, exp_GE);
+                $display("Got:      EQ=%b, NE=%b, GT=%b, LE=%b, LT=%b, GE=%b", 
+                         EQ, NE, GT, LE, LT, GE);
+                fail_count = fail_count + 1;
+            end else begin
+                pass_count = pass_count + 1;
+            end
+        end
+    endtask
+
+    initial begin
+        // Test specific cases
+        $display("Testing specific cases...");
+
+        // Test case 1: A = B = 0
+        A = 32'h00000000; B = 32'h00000000; #10;
+        check_outputs(A, B, 1, 0, 0, 1, 0, 1);
+
+        // Test case 2: A > B (max vs max-1)
+        A = 32'hFFFFFFFF; B = 32'hFFFFFFFE; #10;
+        check_outputs(A, B, 0, 1, 1, 0, 0, 1);
+
+        // Test case 3: A < B
+        A = 32'hFFFFFFFE; B = 32'hFFFFFFFF; #10;
+        check_outputs(A, B, 0, 1, 0, 1, 1, 0);
+
+        // Test case 4: MSB set, A > B (unsigned)
+        A = 32'h80000000; B = 32'h7FFFFFFF; #10;
+        check_outputs(A, B, 0, 1, 1, 0, 0, 1);
+
+        // Test case 5: Difference in lower bits
+        A = 32'h12345678; B = 32'h12345679; #10;
+        check_outputs(A, B, 0, 1, 0, 1, 1, 0);
+
+        // Random testing
+        $display("Testing with 1000000 random inputs...");
+        for (i = 0; i < 1000000; i = i + 1) begin
+            A = $random; B = $random; #10;
+            check_outputs(A, B,
+                          (A == B),           // EQ
+                          (A != B),           // NE
+                          (A > B),            // GT
+                          (A <= B),           // LE
+                          (A < B),            // LT
+                          (A >= B));          // GE
+        end
+
+        // Summary
+        $display("Test Summary: %0d tests passed, %0d tests failed", pass_count, fail_count);
+        if (fail_count == 0) begin
+            $display("[%t] --------------- SIMULATION PASS ---------------", $time);
+        end else begin
+            $display("[%t] --------------- SIMULATION FAIL ---------------", $time);
+        end
+
+        $stop;
+    end
+
+endmodule

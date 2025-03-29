@@ -1,0 +1,12 @@
+module ALU_UNIT
+(
+	input [31:0] SrcA, SrcB,
+	input [2:0] ALU_Ctrl,
+	output [31:0] Zero,
+	output [31:0] ALU_Results
+);
+
+
+
+
+endmodule 

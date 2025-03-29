@@ -1,0 +1,7 @@
+module COMPARATOR_32bits
+#(parameter n = 32)
+(
+	input [n-1:0] R,
+	input Rin_en, clk, resetn,
+	output reg [n-1:0] Q
+);
