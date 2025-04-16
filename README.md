@@ -1,8 +1,7 @@
 # Single Cycle RISC_V
 A R32I RISC_V Model
 
-
-
+<br><br><br>
 
 Top-level diagram:
 
