@@ -1,6 +1,9 @@
 #RISC_V
 Buid a R32I RISC_V Model
 
+Instruction Set of RV32I
+![image](https://github.com/user-attachments/assets/da76d000-5565-44ef-a1ce-147f4818eae4)
+
 
 Result Test:
 ![0s - 120ns](https://github.com/user-attachments/assets/d3eac833-d2e3-44db-a73b-29d98b741fdc)
