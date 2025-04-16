@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/5b5ba045-ed2b-4ea7-93a3-338ed4bb0062)# Single Cycle RISC_V
+# Single Cycle RISC_V
 A R32I RISC_V Model
 
 
