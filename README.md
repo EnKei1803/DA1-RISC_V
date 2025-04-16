@@ -54,6 +54,11 @@ Instruction Set of RV32I:
 
 
 
+Instruction for testing:
+
+![image](https://github.com/user-attachments/assets/b8157543-bd6c-4870-9202-7b59beb37806)
+
+
 
 Result Test:
 
