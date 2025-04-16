@@ -7,6 +7,11 @@ module REGISTER_FILE
 	output [31:0] RD1, RD2		// Output data of A1 and A2
 );
 
+	logic [31:0] 	R0,  R1,  R2,  R3,  R4,  R5,  R6,  R7,
+						R8,  R9,  R10, R11, R12, R13, R14, R15,
+						R16, R17, R18, R19, R20, R21, R22, R23,
+						R24, R25, R26, R27, R28, R29, R30, R31;
+
 
 // Select which REGISTER is taked value
 wire [31:0] REG1, REG2, REG_S;
@@ -61,10 +66,7 @@ REG_32bits	REG_32bits_R29 (WD3, WE[29], clk, nrst, R29);
 REG_32bits	REG_32bits_R30 (WD3, WE[30], clk, nrst, R30);
 REG_32bits	REG_32bits_R31 (WD3, WE[31], clk, nrst, R31);
 
-wire [31:0] R0,  R1,  R2,  R3,  R4,  R5,  R6,  R7,
-             R8,  R9,  R10, R11, R12, R13, R14, R15,
-             R16, R17, R18, R19, R20, R21, R22, R23,
-             R24, R25, R26, R27, R28, R29, R30, R31;
+
 
 // Get data from selected REGISTER
 MULT_32X1 MULT_32X1_REG1 (REG1, 	R0,  R1,  R2,  R3,  R4,  R5,  R6,  R7,

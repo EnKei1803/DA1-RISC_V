@@ -1,14 +1,14 @@
 module PC_COUNTER
 (
-  input logic [63:0] PCNext,
+  input logic [31:0] PCNext,
   input logic clk,
-  input logic reset,
-  output logic [63:0] PC
+  input logic nrst,
+  output logic [31:0] PC
 );
   
-  always_ff @(posedge clk or posedge reset)
-    if (reset)
-      PC <= 64'd0;
+  always_ff @(posedge clk or negedge nrst)
+    if (!nrst)
+      PC <= 32'd0;
     else
       PC <= PCNext;
 

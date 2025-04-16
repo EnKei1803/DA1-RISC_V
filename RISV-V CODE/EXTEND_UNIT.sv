@@ -1,7 +1,7 @@
 module EXTEND_UNIT 
 (
-	input [24:0] Instr,			// Range contaim Immediate [31:7]
-	input [2:0] ImmSrc,			// Select which range contain Immediate
+	input logic [24:0] Instr,			// Range contaim Immediate [31:7]
+	input [2:0] ImmSrc,			// Select which range contain Immediate			// Select Size and Signed or not
 	output [31:0] ImmExt			// Output of full Immediate
 );
 
@@ -10,7 +10,7 @@ module EXTEND_UNIT
 	|--------------------|-----------|-----------|-----------|-----------|-----------------------------------------------------------------|
 	|	 	Description		| ImmSrc2	| ImmSrc1	|	ImmSrc0	|	  Type 	|										Imm Ext										|
 	|--------------------|-----------|-----------|-----------|-----------|-----------------------------------------------------------------|
-	|		12-bit signed	|		0		|		0		|		0		|		I		|					  {{20{Instr[31]}}, Instr[31:20]}						|
+	|		12-bit signed	|		0		|		0		|		0		|		I		|						 {{20{Instr[31]}}, Instr[31:20]}						|
 	|--------------------|-----------|-----------|-----------|-----------|-----------------------------------------------------------------|
 	|		12-bit signed	|		0		|		0		|		1		|		S		|			{{20{Instr[31]}}, Instr[31:25], Instr[11:7]}					|
 	|--------------------|-----------|-----------|-----------|-----------|-----------------------------------------------------------------|
@@ -18,41 +18,25 @@ module EXTEND_UNIT
 	|--------------------|-----------|-----------|-----------|-----------|-----------------------------------------------------------------|
 	|		21-bit signed 	|		0		|		1		|		1		|		J		|  {{12{Instr[31]}}, Instr[19:12], Instr[20], Instr[30:21], 1’b0} |
 	|--------------------|-----------|-----------|-----------|-----------|-----------------------------------------------------------------|
-	|		20-bit signed	|		1		|		0		|		0		|		I		|							  {Instr[31:12], 12'b0}								|
+	|		20-bit signed	|		1		|		0		|		0		|		U		|							  {Instr[31:12], 12'b0}								|
 	|--------------------|-----------|-----------|-----------|-----------|-----------------------------------------------------------------|
-
+	
 */
-logic [31:0] I_Type, S_Type, B_Type, J_Type;
 
-assign I_Type = {{20{Instr[24]}}, Instr[24:13]};
-assign S_Type = {{20{Instr[24]}}, Instr[24:18], Instr[4:0]};
-assign B_Type = {{20{Instr[24]}}, Instr[0], Instr[23:18], Instr[4:1], 1'b0};
-assign J_Type = {{12{Instr[31]}}, Instr[19:12], Instr[20], Instr[30:21], 1'b0};
-assign U_Type = {Instr[31:12], 12'b0};
+always @(*) begin
+    case (ImmSrc)
+		3'b000: ImmExt = {{20{Instr[24]}}, Instr[24:13]};												// I Type
+		3'b001: ImmExt = {{20{Instr[24]}}, Instr[24:18], Instr[4:0]};								// S Type
+		3'b010: ImmExt = {{20{Instr[24]}}, Instr[0], Instr[23:18], Instr[4:1], 1'b0};			// B Type
+		3'b011: ImmExt = {{12{Instr[24]}}, Instr[12:5], Instr[13], Instr[23:14], 1'b0};		// J Type
+		3'b100: ImmExt = {Instr[24:5], 12'b0};																// U Type
+		default: ImmExt = 32'b0;
+	endcase
+end
 
 
-MUX_4x1_EXT	MUX_4x1_EXT_1	(ImmSrc, I_Type, S_Type, B_Type, J_Type, U_Type, ImmExt);
 
 endmodule 
 
 
-//--------------------------------MUX 5x1------------------------------------
 
-module MUX_5x1_EXT
-(
-	input [1:0] s,
-	input [31:0] I0, I1, I2, I3, I4,
-	output [31:0]Y
-);
-
-    always @(*) begin
-        case (s)
-            3'b000: Y = I0;  // I-Type
-            3'b001: Y = I1;  // S-Type
-            3'b010: Y = I2;  // B-Type
-				3'b011: Y = I3;  // J-Type
-				3'b100: Y = I4;  // U-Type
-            default: Y = 32'b0; // Default (invalid case)
-        endcase
-    end	
-endmodule

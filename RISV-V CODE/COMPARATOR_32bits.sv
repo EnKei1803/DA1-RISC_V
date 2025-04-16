@@ -1,16 +1,14 @@
 module COMPARATOR_32bits
 (
 	input [31:0] A,B,
-	output EQ, NE, GT, LE, LT, GE
+	output EQ,LT, GT
 );
 
 /*
 		EQ : EQUAL					=
 		NE : NOT EQUAL				≠
-		GT : GREATER THAN			>
-		LE : LESS or EQUAL		≤
 		LT : LESS THAN				<	
-		GE : GREATER or EQUAL	≥
+		GT : GREATER THAN			≥
 
 */
 
@@ -39,10 +37,6 @@ COMPARATOR_10bits COMPARATOR_10bits_3 (temp2 [9:0], temp2 [19:10], null3, temp3[
 COMPARATOR_4bits COMPARATOR_4bits_1 (temp3 [3:0], temp3 [7:4], null4, temp4[0], temp4[2]);
 
 COMPARATOR_2bits COMPARATOR_2bits_1 (temp4 [1:0], temp4 [3:2], EQ, GT, LT);
-
-assign NE = ~EQ;
-assign LE = ~GT;
-assign GE = ~LT;
 
 endmodule 
 

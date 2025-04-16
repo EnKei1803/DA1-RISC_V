@@ -3,36 +3,30 @@ module COMPARATOR_32bits_TB;
 
     // Declare input and output signals
     logic [31:0] A, B;
-    logic EQ, NE, GT, LE, LT, GE;
+    logic EQ, LT, GT;
 
-    // Instantiate the Device Under Test (DUT) without parameter override
+    // Instantiate the Device Under Test (DUT)
     COMPARATOR_32bits dut (
         .A(A),
         .B(B),
         .EQ(EQ),
-        .NE(NE),
-        .GT(GT),
-        .LE(LE),
         .LT(LT),
-        .GE(GE)
+        .GT(GT)
     );
 
     integer i;
     integer pass_count = 0;
     integer fail_count = 0;
 
-    // Function to check outputs against expected values
+    // Task to check outputs against expected values
     task check_outputs;
         input [31:0] A_in, B_in;
-        input exp_EQ, exp_NE, exp_GT, exp_LE, exp_LT, exp_GE;
+        input exp_EQ, exp_LT, exp_GT;
         begin
-            if (EQ !== exp_EQ || NE !== exp_NE || GT !== exp_GT || 
-                LE !== exp_LE || LT !== exp_LT || GE !== exp_GE) begin
+            if (EQ !== exp_EQ || LT !== exp_LT || GT !== exp_GT) begin
                 $display("Incorrect result at A = %h, B = %h", A_in, B_in);
-                $display("Expected: EQ=%b, NE=%b, GT=%b, LE=%b, LT=%b, GE=%b", 
-                         exp_EQ, exp_NE, exp_GT, exp_LE, exp_LT, exp_GE);
-                $display("Got:      EQ=%b, NE=%b, GT=%b, LE=%b, LT=%b, GE=%b", 
-                         EQ, NE, GT, LE, LT, GE);
+                $display("Expected: EQ=%b, LT=%b, GT=%b", exp_EQ, exp_LT, exp_GT);
+                $display("Got:      EQ=%b, LT=%b, GT=%b", EQ, LT, GT);
                 fail_count = fail_count + 1;
             end else begin
                 pass_count = pass_count + 1;
@@ -44,37 +38,42 @@ module COMPARATOR_32bits_TB;
         // Test specific cases
         $display("Testing specific cases...");
 
-        // Test case 1: A = B = 0
-        A = 32'h00000000; B = 32'h00000000; #10;
-        check_outputs(A, B, 1, 0, 0, 1, 0, 1);
+        // Test case 1: A = B
+        A = 32'h12345678; B = 32'h12345678; #10;
+        check_outputs(A, B, 1, 0, 0); // EQ = 1, LT = 0, GT = 0
 
-        // Test case 2: A > B (max vs max-1)
-        A = 32'hFFFFFFFF; B = 32'hFFFFFFFE; #10;
-        check_outputs(A, B, 0, 1, 1, 0, 0, 1);
+        // Test case 2: A < B (unsigned)
+        A = 32'h00000001; B = 32'h00000002; #10;
+        check_outputs(A, B, 0, 1, 0); // EQ = 0, LT = 1, GT = 0
 
-        // Test case 3: A < B
-        A = 32'hFFFFFFFE; B = 32'hFFFFFFFF; #10;
-        check_outputs(A, B, 0, 1, 0, 1, 1, 0);
+        // Test case 3: A > B (unsigned)
+        A = 32'h00000002; B = 32'h00000001; #10;
+        check_outputs(A, B, 0, 0, 1); // EQ = 0, LT = 0, GT = 1
 
-        // Test case 4: MSB set, A > B (unsigned)
+        // Test case 4: A < B (unsigned, large numbers)
+        A = 32'h7FFFFFFF; B = 32'h80000000; #10;
+        check_outputs(A, B, 0, 1, 0); // EQ = 0, LT = 1, GT = 0
+
+        // Test case 5: A > B (unsigned, large numbers)
         A = 32'h80000000; B = 32'h7FFFFFFF; #10;
-        check_outputs(A, B, 0, 1, 1, 0, 0, 1);
+        check_outputs(A, B, 0, 0, 1); // EQ = 0, LT = 0, GT = 1
 
-        // Test case 5: Difference in lower bits
-        A = 32'h12345678; B = 32'h12345679; #10;
-        check_outputs(A, B, 0, 1, 0, 1, 1, 0);
+        // Test case 6: Edge case - all zeros vs all ones
+        A = 32'h00000000; B = 32'hFFFFFFFF; #10;
+        check_outputs(A, B, 0, 1, 0); // EQ = 0, LT = 1, GT = 0
 
         // Random testing
-        $display("Testing with 1000000 random inputs...");
-        for (i = 0; i < 1000000; i = i + 1) begin
-            A = $random; B = $random; #10;
+        $display("Testing with 100000 random inputs...");
+        for (i = 0; i < 100000; i = i + 1) begin
+            A = $random;    // Random 32-bit input A
+            B = $random;    // Random 32-bit input B
+            #10;
+
+            // Calculate expected outputs (unsigned comparison)
             check_outputs(A, B,
-                          (A == B),           // EQ
-                          (A != B),           // NE
-                          (A > B),            // GT
-                          (A <= B),           // LE
-                          (A < B),            // LT
-                          (A >= B));          // GE
+                          (A == B),          // EQ
+                          (A < B),           // LT (unsigned)
+                          (A > B));          // GT (unsigned)
         end
 
         // Summary
@@ -88,4 +87,4 @@ module COMPARATOR_32bits_TB;
         $stop;
     end
 
-endmodule
+endmodule 

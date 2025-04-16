@@ -17,7 +17,7 @@ Sim dir               :  simulation\modelsim
 
 Info: Starting NativeLink simulation with ModelSim-Altera software
 Sourced NativeLink script c:/intelfpga_lite/18.1/quartus/common/tcl/internal/nativelink/modelsim.tcl
-Warning: File DA1_run_msim_gate_verilog.do already exists - backing up current file as DA1_run_msim_gate_verilog.do.bak5
+Warning: File DA1_run_msim_gate_verilog.do already exists - backing up current file as DA1_run_msim_gate_verilog.do.bak11
 Probing transcript
 ModelSim-Altera Info: # Reading C:/intelFPGA_lite/18.1/modelsim_ase/tcl/vsim/pref.tcl
 ModelSim-Altera Info: # do DA1_run_msim_gate_verilog.do
@@ -33,49 +33,50 @@ ModelSim-Altera Info: # Modifying modelsim.ini
 ModelSim-Altera Info: # 
 ModelSim-Altera Info: # vlog -vlog01compat -work work +incdir+. {DA1.vo}
 ModelSim-Altera Info: # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-ModelSim-Altera Info: # Start time: 11:38:20 on Mar 27,2025
+ModelSim-Altera Info: # Start time: 14:22:24 on Apr 14,2025
 ModelSim-Altera Info: # vlog -reportprogress 300 -vlog01compat -work work "+incdir+." DA1.vo 
-ModelSim-Altera Info: # -- Compiling module COMPARATOR_32bits
+ModelSim-Altera Info: # -- Compiling module ADDER_32bits
 ModelSim-Altera Info: # 
 ModelSim-Altera Info: # Top level modules:
-ModelSim-Altera Info: # 	COMPARATOR_32bits
-ModelSim-Altera Info: # End time: 11:38:20 on Mar 27,2025, Elapsed time: 0:00:00
+ModelSim-Altera Info: # 	ADDER_32bits
+ModelSim-Altera Info: # End time: 14:22:24 on Apr 14,2025, Elapsed time: 0:00:00
 ModelSim-Altera Info: # Errors: 0, Warnings: 0
 ModelSim-Altera Info: # 
-ModelSim-Altera Info: # vlog -sv -work work +incdir+C:/intelFPGA_lite/18.1/DA1 {C:/intelFPGA_lite/18.1/DA1/COMPARATOR_32bits_TB.sv}
+ModelSim-Altera Info: # vlog -sv -work work +incdir+C:/intelFPGA_lite/18.1/DA1 {C:/intelFPGA_lite/18.1/DA1/ADDER_32bits_TB.sv}
 ModelSim-Altera Info: # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-ModelSim-Altera Info: # Start time: 11:38:20 on Mar 27,2025
-ModelSim-Altera Info: # vlog -reportprogress 300 -sv -work work "+incdir+C:/intelFPGA_lite/18.1/DA1" C:/intelFPGA_lite/18.1/DA1/COMPARATOR_32bits_TB.sv 
-ModelSim-Altera Info: # -- Compiling module COMPARATOR_32bits_TB
+ModelSim-Altera Info: # Start time: 14:22:24 on Apr 14,2025
+ModelSim-Altera Info: # vlog -reportprogress 300 -sv -work work "+incdir+C:/intelFPGA_lite/18.1/DA1" C:/intelFPGA_lite/18.1/DA1/ADDER_32bits_TB.sv 
+ModelSim-Altera Info: # -- Compiling module ADDER_32bits_TB
 ModelSim-Altera Info: # 
 ModelSim-Altera Info: # Top level modules:
-ModelSim-Altera Info: # 	COMPARATOR_32bits_TB
-ModelSim-Altera Info: # End time: 11:38:20 on Mar 27,2025, Elapsed time: 0:00:00
+ModelSim-Altera Info: # 	ADDER_32bits_TB
+ModelSim-Altera Info: # End time: 14:22:24 on Apr 14,2025, Elapsed time: 0:00:00
 ModelSim-Altera Info: # Errors: 0, Warnings: 0
 ModelSim-Altera Info: # 
-ModelSim-Altera Info: # vsim -t 1ps +transport_int_delays +transport_path_delays -L altera_ver -L altera_lnsim_ver -L cyclonev_ver -L lpm_ver -L sgate_ver -L cyclonev_hssi_ver -L altera_mf_ver -L cyclonev_pcie_hip_ver -L gate_work -L work -voptargs="+acc"  COMPARATOR_32bits_TB
-ModelSim-Altera Info: # vsim -t 1ps "+transport_int_delays" "+transport_path_delays" -L altera_ver -L altera_lnsim_ver -L cyclonev_ver -L lpm_ver -L sgate_ver -L cyclonev_hssi_ver -L altera_mf_ver -L cyclonev_pcie_hip_ver -L gate_work -L work -voptargs=""+acc"" COMPARATOR_32bits_TB 
-ModelSim-Altera Info: # Start time: 11:38:20 on Mar 27,2025
+ModelSim-Altera Info: # vsim -t 1ps +transport_int_delays +transport_path_delays -L altera_ver -L altera_lnsim_ver -L cyclonev_ver -L lpm_ver -L sgate_ver -L cyclonev_hssi_ver -L altera_mf_ver -L cyclonev_pcie_hip_ver -L gate_work -L work -voptargs="+acc"  ADDER_32bits_TB
+ModelSim-Altera Info: # vsim -t 1ps "+transport_int_delays" "+transport_path_delays" -L altera_ver -L altera_lnsim_ver -L cyclonev_ver -L lpm_ver -L sgate_ver -L cyclonev_hssi_ver -L altera_mf_ver -L cyclonev_pcie_hip_ver -L gate_work -L work -voptargs=""+acc"" ADDER_32bits_TB 
+ModelSim-Altera Info: # Start time: 14:22:24 on Apr 14,2025
 ModelSim-Altera Info: # Loading sv_std.std
-ModelSim-Altera Info: # Loading work.COMPARATOR_32bits_TB
-ModelSim-Altera Info: # Loading work.COMPARATOR_32bits
+ModelSim-Altera Info: # Loading work.ADDER_32bits_TB
+ModelSim-Altera Info: # Loading work.ADDER_32bits
 ModelSim-Altera Info: # Loading cyclonev_ver.cyclonev_io_obuf
 ModelSim-Altera Info: # Loading cyclonev_ver.cyclonev_io_ibuf
 ModelSim-Altera Info: # Loading cyclonev_ver.cyclonev_lcell_comb
 ModelSim-Altera Info: # 
 ModelSim-Altera Info: # add wave *
+ModelSim-Altera Warning: # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+ModelSim-Altera Info: #           File in use by: khoid  Hostname: LAPTOP-KQ2QG1BQ  ProcessID: 20708
+ModelSim-Altera Info: #           Attempting to use alternate WLF file "./wlftynqbc1".
+ModelSim-Altera Warning: # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+ModelSim-Altera Info: #           Using alternate file: ./wlftynqbc1
 ModelSim-Altera Info: # view structure
 ModelSim-Altera Info: # .main_pane.structure.interior.cs.body.struct
 ModelSim-Altera Info: # view signals
 ModelSim-Altera Info: # .main_pane.objects.interior.cs.body.tree
 ModelSim-Altera Info: # run -all
-ModelSim-Altera Info: # Testing specific cases...
-ModelSim-Altera Info: # Testing with 1000000 random inputs...
-ModelSim-Altera Info: # Test Summary: 1000005 tests passed, 0 tests failed
-ModelSim-Altera Info: # [            10000050] --------------- SIMULATION PASS ---------------
-ModelSim-Altera Info: # ** Note: $stop    : C:/intelFPGA_lite/18.1/DA1/COMPARATOR_32bits_TB.sv(88)
-ModelSim-Altera Info: #    Time: 10000050 ps  Iteration: 0  Instance: /COMPARATOR_32bits_TB
-ModelSim-Altera Info: # Break in Module COMPARATOR_32bits_TB at C:/intelFPGA_lite/18.1/DA1/COMPARATOR_32bits_TB.sv line 88
-ModelSim-Altera Info: # End time: 11:39:33 on Mar 27,2025, Elapsed time: 0:01:13
-ModelSim-Altera Info: # Errors: 0, Warnings: 0
+ModelSim-Altera Info: # Test carry-in is 0
+ModelSim-Altera Info: # Break key hit
+ModelSim-Altera Info: # Break in Module cyclonev_lcell_comb at /build/swbuild/SJ/nightly/18.1std/625/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v line 836
+ModelSim-Altera Info: # End time: 14:24:55 on Apr 14,2025, Elapsed time: 0:02:31
+ModelSim-Altera Info: # Errors: 0, Warnings: 2
 Info: NativeLink simulation flow was successful
