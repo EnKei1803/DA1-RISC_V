@@ -43,7 +43,14 @@ Diagram of ALU:
 
 Branch Compare Unit
 
-![ALU](https://github.com/user-attachments/assets/82d64f9f-18a1-4a7a-bbcb-3246ee143370)
+![Branch Comparator](https://github.com/user-attachments/assets/10548fad-4e6f-42ae-ad46-41122a48d585)
+
+
+
+
+  -For the instruction lb, lh, lbu, lhu, sb, sh; the Data Memory Unit would be modified for able to to run these instruction. The finnally design of this:
+  
+![DataMemory](https://github.com/user-attachments/assets/b4d5966c-6018-43ab-9eec-b554afb4076c)
 
 
 
