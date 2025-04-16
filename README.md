@@ -2,9 +2,13 @@
 A R32I RISC_V Model
 
 
+
+
 Top-level diagram:
 
 ![RISC-V diagram (self-draw)](https://github.com/user-attachments/assets/1c46f1ef-83d0-4dde-b162-200c80b9f5cb)
+
+
 
 
 
@@ -16,9 +20,13 @@ Diagram of ALU:
 
 
 
+
+
   -In ALU, the design uses the model of Kooge Stone ADDER, which is commonly used most of CPU nowadays.
   
 ![KSA_32bits](https://github.com/user-attachments/assets/c677dcf5-0598-477d-b879-dbd33156e9d1)
+
+
 
 
 
@@ -48,9 +56,13 @@ Branch Compare Unit
 
 
 
+
+
   -For the instruction lb, lh, lbu, lhu, sb, sh; the Data Memory Unit would be modified for able to to run these instruction. The finnally design of this:
   
 ![DataMemory](https://github.com/user-attachments/assets/b4d5966c-6018-43ab-9eec-b554afb4076c)
+
+
 
 
 
@@ -61,9 +73,13 @@ Instruction Set of RV32I:
 
 
 
+
+
 Instruction for testing:
 
 ![image](https://github.com/user-attachments/assets/b8157543-bd6c-4870-9202-7b59beb37806)
+
+
 
 
 
