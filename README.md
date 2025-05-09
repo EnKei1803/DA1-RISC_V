@@ -1,5 +1,5 @@
 # Single Cycle RISC_V
-A R32I RISC_V Model
+A R32I Single Cycle RISC_V Model
 
 <br><br><br>
 
