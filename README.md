@@ -25,19 +25,19 @@ Diagram of ALU:
   
 2-bit Comparator
 
-![image](https://github.com/user-attachments/assets/57a44429-d9a0-4299-ad39-d32560ba773a)
+![2-Bits Comparator](https://github.com/user-attachments/assets/7c17ed2e-3682-40a7-ae36-fa6075a2d1b1)
 
 4-bit Comparator
 
-![image](https://github.com/user-attachments/assets/1997fee9-e7f5-4b18-aed6-64dbed0b9cc0)
+![4-Bits Comparator](https://github.com/user-attachments/assets/df7517f6-4fb2-4413-a553-0a5af74d41e6)
 
 10-bit Comparator
 
-![image](https://github.com/user-attachments/assets/dcfff53b-b79a-4bd3-99b3-57df8c60b3b9)
+![10-Bits Comparator](https://github.com/user-attachments/assets/872d7692-3909-4d0d-a3d1-35ed78c7c662)
 
 32-bit Comparator
 
-![image](https://github.com/user-attachments/assets/fa3f99ac-8181-44e6-8e25-058a1ea56fc3)
+![32-Bits Comparator](https://github.com/user-attachments/assets/afcef684-4537-4b47-a614-9daa413f6972)
 
 Branch Compare Unit
 
