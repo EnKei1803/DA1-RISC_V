@@ -1,9 +1,9 @@
 module REG_32bits 
 #(parameter n = 32)
 (
-	input [n-1:0] R,
+	input [n-1:0] R,					// IN
 	input Rin_en, clk, resetn,
-	output reg [n-1:0] Q
+	output reg [n-1:0] Q				// OUT
 );
 
 always @(posedge clk or negedge resetn) begin

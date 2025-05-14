@@ -1,0 +1,7 @@
+module wrapper
+(
+	input [7:0] A,
+	output [7:0] hundreds, tens, units
+);
+
+

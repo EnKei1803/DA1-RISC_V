@@ -29,7 +29,7 @@ wire [31:1] WE;
 wire [31:0] decoder_output;
 				 
 	assign R0 = 32'b0;			
-	assign REG_S = decoder_output & ~32'b1;  	// Always disable R0 selection
+	assign REG_S = decoder_output & ~32'b1;  			// Always disable R0 selection
 
 	assign WE[31:1] = REG_S[31:1] & {31{WE3}};		// Write enable for writen REGISTER
 	

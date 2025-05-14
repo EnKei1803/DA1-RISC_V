@@ -5,7 +5,7 @@ module INSTRUCTION_MEMORY
 );
 
 	// Memory array: 256 entries of 32-bit words 
-	reg [31:0] mem [0:255];			// 256 x 32-bit memory
+	reg [31:0] mem [0:255]= '{default:8'h00};			// 256 x 32-bit memory
 
 	// Initialize memory from file
 	initial begin

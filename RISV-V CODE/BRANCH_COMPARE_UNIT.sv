@@ -24,7 +24,7 @@ module BRANCH_COMPARE_UNIT
 			|-----------------------------|-----|-----|-----|
 			
 */
-   logic EQ, NE, LT, GE;
+   logic EQ, NE, LT, GE, GT;
 	logic LT_U, GT_U; 
 // Calculate condition
 COMPARATOR_32bits	COMPARATOR	(SrcA, SrcB, EQ, LT_U, GT_U);

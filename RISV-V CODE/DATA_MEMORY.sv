@@ -2,22 +2,39 @@ module DATA_MEMORY (
     input clk,
     input [31:0] A,					// Address input
     input [31:0] WD,					// Data to write
-    input WE,							// Write enable
+	 input [31:0] IO_data,			// Data from external I/O
+    input WE, 							// Write enable
 	 input [3:0] SLType,				//	Store-Load Type
-    output [31:0] RD					// Data read from memory
+    output [31:0] RD, WD2			// Data read from memory
 );
+
+/*
+	SLType| function
+	------|-----------
+	 0000 |	lb
+	 0001 | 	lh
+	 0010 | 	lw
+	 0100 | 	lbu
+	 0110 | 	lhu
+	 1000 | 	sb
+	 1001 | 	sh
+	 1010 | 	sw
+
+*/
+
 
 // Internal wire 
 logic [31:0]RD1, RD2, WD1;
-logic WE1;
+
+assign WD2 = WD | IO_data;
+
 
 // Memory Zone
-assign WE1 = WE & SLType[3];
 MEMORY	MEM_Value	(
 				.clk(clk), 
 				.A(A), 
 				.WD(RD2), 
-				.WE(WE1), 
+				.WE(WE), 
 				.RD(RD1)
 );		
 
@@ -34,7 +51,7 @@ assign RD = RD2 & {32{~SLType[3]}};		// if "store", RD = 0
 MUX_2x1_32Bits	StoreOrLoad	(
 				.s(SLType[3]),
 				.I0(RD1),
-				.I1(WD),
+				.I1(WD2),
 				.Y(WD1)
 );
 
@@ -56,6 +73,7 @@ module MEMORY (
 
 	 logic [7:0]B;
 	 assign B = A[7:0] << 2;
+	 //assign B = A[7:0];
 	 
 		// MEM
 	always @(posedge clk) begin
@@ -90,3 +108,5 @@ end
 
 
 endmodule 
+
+
