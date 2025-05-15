@@ -1,5 +1,5 @@
+#A R32I Single Cycle RISC_V Model 
 ![RISC-V diagram (self-draw)_with I_O](https://github.com/user-attachments/assets/1b59394e-8872-499d-ba03-bb76cf364ddd)# Single Cycle RISC_V
-A R32I Single Cycle RISC_V Model
 
 <br><br><br>
 
