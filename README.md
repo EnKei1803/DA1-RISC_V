@@ -54,9 +54,13 @@ Data Memory connect to I/O Block:
 
 I/O Block placement in CPU:
 
-
 ![RISC-V diagram (self-draw)_with I_O](https://github.com/user-attachments/assets/1b59394e-8872-499d-ba03-bb76cf364ddd)
 
+<br>
+
+The instruction below is using for calculate FIBONNANCI, which i get value from SW input, the we will calculate result and decode it to display on 7SegLED.
+
+![Fibonannci Test Result](https://github.com/user-attachments/assets/5b70253b-8be1-4654-b2f9-2821e97186ca)
 
 
 
