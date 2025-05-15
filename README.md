@@ -1,4 +1,4 @@
-# Single Cycle RISC_V
+![RISC-V diagram (self-draw)_with I_O](https://github.com/user-attachments/assets/1b59394e-8872-499d-ba03-bb76cf364ddd)# Single Cycle RISC_V
 A R32I Single Cycle RISC_V Model
 
 <br><br><br>
@@ -34,18 +34,24 @@ Result Test:
 ![240ns - 360ns](https://github.com/user-attachments/assets/99759669-f6dc-4bc9-8945-ac67e525cce0)
 ![360ns - 480ns](https://github.com/user-attachments/assets/8e3da76b-e08c-4ccf-a428-11dce00fac6b)
 
+<br><br><br><br>
+
 # I/O for RISC-V 
 After building a RISC-V processor, we need to establish methods for I/O communication with the PCU to ensure usability. This requires designing an I/O Addressing Map to facilitate effective interaction.
 
 ![Addressing IO Device](https://github.com/user-attachments/assets/3d175510-7d18-4fb1-86ca-8b521f737929)
 
+<br><br>
 Using the method described, we connect the I/O Block to Data Memory with a clear and detailed setup. Here's how we apply this connection to the CPU.
-
+<br><br>
 Data Memory connect to I/O Block:
 ![Memory_IO](https://github.com/user-attachments/assets/2a30570f-eb66-44ad-8435-04bf47f5ce17)
-
+<br><br>
 I/O Block placement in CPU:
-![Uploading RISC-V diagram (self-draw)_with I_O.png…]()
+
+
+
+
 
 
 
