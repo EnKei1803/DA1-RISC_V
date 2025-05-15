@@ -40,16 +40,21 @@ After building a RISC-V processor, we need to establish methods for I/O communic
 ![Addressing IO Device](https://github.com/user-attachments/assets/3d175510-7d18-4fb1-86ca-8b521f737929)
 
 <br>
+
 Using the method described, we connect the I/O Block to Data Memory with a clear and detailed setup. Here's how we apply this connection to the CPU.
 
 <br>
 
 Data Memory connect to I/O Block:
+
+
 ![Memory_IO](https://github.com/user-attachments/assets/2a30570f-eb66-44ad-8435-04bf47f5ce17)
 
 <br>
 
 I/O Block placement in CPU:
+
+
 ![RISC-V diagram (self-draw)_with I_O](https://github.com/user-attachments/assets/1b59394e-8872-499d-ba03-bb76cf364ddd)
 
 
