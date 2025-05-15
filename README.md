@@ -8,17 +8,15 @@ Top-level diagram:
 
 <br><br><br>
 
-Diagram of ALU:
-
-![ALU](https://github.com/user-attachments/assets/843fe05d-143c-45b6-910a-b81a2dd1e75a)
-
-<br><br><br>
+The project is successful build a RV32I with 34 integer instruction with all detail of it show as below: 
 
 Instruction Set of RV32I:
 
 ![image](https://github.com/user-attachments/assets/da76d000-5565-44ef-a1ce-147f4818eae4)
 
 <br><br><br>
+
+To test the processor's functionality, we need to write instruction code that covers as many instructions as possible. The details are shown below:
 
 Instruction for testing:
 
