@@ -1,9 +1,0 @@
-module BCDto7SegLED
-(
-	input [11:0] BCD,
-	output [7:0] SegLED
-);
-
-
-
-
