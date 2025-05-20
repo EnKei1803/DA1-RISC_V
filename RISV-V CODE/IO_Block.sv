@@ -9,7 +9,7 @@ module IO_Block
 	
 	// IN-OUT from device
 	input [7:0] SW,			// SW input
-	output [7:0] hundreds,	// Value send to 7SegLed
+	output [6:0] hundreds,	// Value send to 7SegLed
 					 tens, 
 					 units,
 	output WE1,
@@ -108,7 +108,7 @@ module IO_7SegLed
 	input [31:0] WD,					// Value use for calculate before display
 	output [31:0] RD,					// Data out (use for store in memory)
 	output [31:0] RD_7SegLed,
-	output [7:0] hundreds,			// Value send to 7SegLed
+	output [6:0] hundreds,			// Value send to 7SegLed
 					 tens, 
 					 units,
 	output WE1

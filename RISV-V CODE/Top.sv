@@ -8,7 +8,7 @@ module Top
 						
 	// I/O					
 	input [7:0] SW, 				// SW input
-	output [7:0]	hundreds,	// Value send to 7SegLed
+	output [6:0]	hundreds,	// Value send to 7SegLed
 						tens, 
 						units,
 	output WE1,						
@@ -69,7 +69,7 @@ REGISTER_FILE REG_UNIT		( .A1(Instr[19:15]),
 									  .WE3(RegWrite), 
 									  .WD3(Result),
 									  .RD1(RS1), 
-									  .RD2(RS2),
+									  .RD2(RS2)
 );
 
 

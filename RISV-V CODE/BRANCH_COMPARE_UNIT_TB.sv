@@ -47,7 +47,7 @@ module BRANCH_COMPARE_UNIT_TB;
         // Test with random inputs across all modes
         $display("Testing with random inputs across all modes...");
 
-        for (i = 0; i < 100000; i = i + 1) begin				// 100000 case
+        for (i = 0; i < 1000000; i = i + 1) begin				// 1000000 case
             // Generate random SrcA and SrcB
             SrcA = $random;
             SrcB = $random;

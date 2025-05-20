@@ -2,9 +2,10 @@ module wrapper
 (
 	input nrst, run, clk,		// Signal from SW
 	input [7:0] SW, 				// SW input
-	output [7:0]	hundreds,	// Value send to 7SegLed
+	output [6:0]	hundreds,	// Value send to 7SegLed
 						tens, 
-						units
+						units,
+	output [9:0] LEDR	
 );
 	
 Top wrapper_top (
@@ -16,13 +17,24 @@ Top wrapper_top (
 						.hundreds(hundreds),
 						.tens(tens),
 						.units(units),	
+						 
 						
 						// Un_use
 						.ALUResult(), 
 						.Result(), 
 						.SrcA(), 
 						.SrcB(), 
-						.PC()
+						.PC(),
+						.WE1(),
+						.RD_7SegLed(),
+						.RS2(), 
+						.IO_Data(),
+						.WD2()
+						
 );									
+						
+assign LEDR[9:0] = {SW[7:0], run, nrst};						
+						
+						
 						
 endmodule 

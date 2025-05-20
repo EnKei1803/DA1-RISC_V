@@ -89,43 +89,48 @@ module DECODER_5_to_32 (
     output [31:0] Y  // 32-bit output
 ); 
 
-always @(*) begin 
-    case (A) 
-        5'b00000: Y = 32'b00000000000000000000000000000001; // R0
-        5'b00001: Y = 32'b00000000000000000000000000000010; // R1
-        5'b00010: Y = 32'b00000000000000000000000000000100; // R2
-        5'b00011: Y = 32'b00000000000000000000000000001000; // R3
-        5'b00100: Y = 32'b00000000000000000000000000010000; // R4
-        5'b00101: Y = 32'b00000000000000000000000000100000; // R5
-        5'b00110: Y = 32'b00000000000000000000000001000000; // R6
-        5'b00111: Y = 32'b00000000000000000000000010000000; // R7
-        5'b01000: Y = 32'b00000000000000000000000100000000; // R8
-        5'b01001: Y = 32'b00000000000000000000001000000000; // R9
-        5'b01010: Y = 32'b00000000000000000000010000000000; // R10
-        5'b01011: Y = 32'b00000000000000000000100000000000; // R11
-        5'b01100: Y = 32'b00000000000000000001000000000000; // R12
-        5'b01101: Y = 32'b00000000000000000010000000000000; // R13
-        5'b01110: Y = 32'b00000000000000000100000000000000; // R14
-        5'b01111: Y = 32'b00000000000000001000000000000000; // R15
-        5'b10000: Y = 32'b00000000000000010000000000000000; // R16
-        5'b10001: Y = 32'b00000000000000100000000000000000; // R17
-        5'b10010: Y = 32'b00000000000001000000000000000000; // R18
-        5'b10011: Y = 32'b00000000000010000000000000000000; // R19
-        5'b10100: Y = 32'b00000000000100000000000000000000; // R20
-        5'b10101: Y = 32'b00000000001000000000000000000000; // R21
-        5'b10110: Y = 32'b00000000010000000000000000000000; // R22
-        5'b10111: Y = 32'b00000000100000000000000000000000; // R23
-        5'b11000: Y = 32'b00000001000000000000000000000000; // R24
-        5'b11001: Y = 32'b00000010000000000000000000000000; // R25
-        5'b11010: Y = 32'b00000100000000000000000000000000; // R26
-        5'b11011: Y = 32'b00001000000000000000000000000000; // R27
-        5'b11100: Y = 32'b00010000000000000000000000000000; // R28
-        5'b11101: Y = 32'b00100000000000000000000000000000; // R29
-        5'b11110: Y = 32'b01000000000000000000000000000000; // R30
-        5'b11111: Y = 32'b10000000000000000000000000000000; // R31
-        default:  Y = 32'b0; // Default case (should never happen)
-    endcase 
-end 
+    // Inverted signals
+    wire A0_n, A1_n, A2_n, A3_n, A4_n;
+
+    not (A0_n, A[0]);
+    not (A1_n, A[1]);
+    not (A2_n, A[2]);
+    not (A3_n, A[3]);
+    not (A4_n, A[4]);
+
+    // Each output bit is a 5-input AND gate
+    and (Y[0],  A4_n, A3_n, A2_n, A1_n, A0_n);
+    and (Y[1],  A4_n, A3_n, A2_n, A1_n, A[0]);
+    and (Y[2],  A4_n, A3_n, A2_n, A[1], A0_n);
+    and (Y[3],  A4_n, A3_n, A2_n, A[1], A[0]);
+    and (Y[4],  A4_n, A3_n, A[2], A1_n, A0_n);
+    and (Y[5],  A4_n, A3_n, A[2], A1_n, A[0]);
+    and (Y[6],  A4_n, A3_n, A[2], A[1], A0_n);
+    and (Y[7],  A4_n, A3_n, A[2], A[1], A[0]);
+    and (Y[8],  A4_n, A[3], A2_n, A1_n, A0_n);
+    and (Y[9],  A4_n, A[3], A2_n, A1_n, A[0]);
+    and (Y[10], A4_n, A[3], A2_n, A[1], A0_n);
+    and (Y[11], A4_n, A[3], A2_n, A[1], A[0]);
+    and (Y[12], A4_n, A[3], A[2], A1_n, A0_n);
+    and (Y[13], A4_n, A[3], A[2], A1_n, A[0]);
+    and (Y[14], A4_n, A[3], A[2], A[1], A0_n);
+    and (Y[15], A4_n, A[3], A[2], A[1], A[0]);
+    and (Y[16], A[4], A3_n, A2_n, A1_n, A0_n);
+    and (Y[17], A[4], A3_n, A2_n, A1_n, A[0]);
+    and (Y[18], A[4], A3_n, A2_n, A[1], A0_n);
+    and (Y[19], A[4], A3_n, A2_n, A[1], A[0]);
+    and (Y[20], A[4], A3_n, A[2], A1_n, A0_n);
+    and (Y[21], A[4], A3_n, A[2], A1_n, A[0]);
+    and (Y[22], A[4], A3_n, A[2], A[1], A0_n);
+    and (Y[23], A[4], A3_n, A[2], A[1], A[0]);
+    and (Y[24], A[4], A[3], A2_n, A1_n, A0_n);
+    and (Y[25], A[4], A[3], A2_n, A1_n, A[0]);
+    and (Y[26], A[4], A[3], A2_n, A[1], A0_n);
+    and (Y[27], A[4], A[3], A2_n, A[1], A[0]);
+    and (Y[28], A[4], A[3], A[2], A1_n, A0_n);
+    and (Y[29], A[4], A[3], A[2], A1_n, A[0]);
+    and (Y[30], A[4], A[3], A[2], A[1], A0_n);
+    and (Y[31], A[4], A[3], A[2], A[1], A[0]);
 
 endmodule  
 
@@ -138,46 +143,66 @@ input [31:0] R0,  R1,  R2,  R3,  R4,  R5,  R6,  R7,
              R8,  R9,  R10, R11, R12, R13, R14, R15,
              R16, R17, R18, R19, R20, R21, R22, R23,
              R24, R25, R26, R27, R28, R29, R30, R31,
-output [31:0] bus		// Value of Register 
+output [31:0] bus		// Value of Register  	
 );
 
-always_comb begin
-	case (sel)
-        32'b00000000000000000000000000000001: bus = R0;  // R0
-        32'b00000000000000000000000000000010: bus = R1;  // R1
-        32'b00000000000000000000000000000100: bus = R2;  // R2
-        32'b00000000000000000000000000001000: bus = R3;  // R3
-        32'b00000000000000000000000000010000: bus = R4;  // R4
-        32'b00000000000000000000000000100000: bus = R5;  // R5
-        32'b00000000000000000000000001000000: bus = R6;  // R6
-        32'b00000000000000000000000010000000: bus = R7;  // R7
-        32'b00000000000000000000000100000000: bus = R8;  // R8
-        32'b00000000000000000000001000000000: bus = R9;  // R9
-        32'b00000000000000000000010000000000: bus = R10; // R10
-        32'b00000000000000000000100000000000: bus = R11; // R11
-        32'b00000000000000000001000000000000: bus = R12; // R12
-        32'b00000000000000000010000000000000: bus = R13; // R13
-        32'b00000000000000000100000000000000: bus = R14; // R14
-        32'b00000000000000001000000000000000: bus = R15; // R15
-        32'b00000000000000010000000000000000: bus = R16; // R16
-        32'b00000000000000100000000000000000: bus = R17; // R17
-        32'b00000000000001000000000000000000: bus = R18; // R18
-        32'b00000000000010000000000000000000: bus = R19; // R19
-        32'b00000000000100000000000000000000: bus = R20; // R20
-        32'b00000000001000000000000000000000: bus = R21; // R21
-        32'b00000000010000000000000000000000: bus = R22; // R22
-        32'b00000000100000000000000000000000: bus = R23; // R23
-        32'b00000001000000000000000000000000: bus = R24; // R24
-        32'b00000010000000000000000000000000: bus = R25; // R25
-        32'b00000100000000000000000000000000: bus = R26; // R26
-        32'b00001000000000000000000000000000: bus = R27; // R27
-        32'b00010000000000000000000000000000: bus = R28; // R28
-        32'b00100000000000000000000000000000: bus = R29; // R29
-        32'b01000000000000000000000000000000: bus = R30; // R30
-        32'b10000000000000000000000000000000: bus = R31; // R31
-        default:  bus = 32'b0; // Default value
-    endcase 
-end 
+// Declare masked wires
+logic [31:0] masked_R0,  masked_R1,  masked_R2,  masked_R3;
+logic [31:0] masked_R4,  masked_R5,  masked_R6,  masked_R7;
+logic [31:0] masked_R8,  masked_R9,  masked_R10, masked_R11;
+logic [31:0] masked_R12, masked_R13, masked_R14, masked_R15;
+logic [31:0] masked_R16, masked_R17, masked_R18, masked_R19;
+logic [31:0] masked_R20, masked_R21, masked_R22, masked_R23;
+logic [31:0] masked_R24, masked_R25, masked_R26, masked_R27;
+logic [31:0] masked_R28, masked_R29, masked_R30, masked_R31;
+
+
+
+// Assign each masked register using logic gates
+assign masked_R0  = {32{sel[0]}}  & R0;
+assign masked_R1  = {32{sel[1]}}  & R1;
+assign masked_R2  = {32{sel[2]}}  & R2;
+assign masked_R3  = {32{sel[3]}}  & R3;
+assign masked_R4  = {32{sel[4]}}  & R4;
+assign masked_R5  = {32{sel[5]}}  & R5;
+assign masked_R6  = {32{sel[6]}}  & R6;
+assign masked_R7  = {32{sel[7]}}  & R7;
+assign masked_R8  = {32{sel[8]}}  & R8;
+assign masked_R9  = {32{sel[9]}}  & R9;
+assign masked_R10 = {32{sel[10]}} & R10;
+assign masked_R11 = {32{sel[11]}} & R11;
+assign masked_R12 = {32{sel[12]}} & R12;
+assign masked_R13 = {32{sel[13]}} & R13;
+assign masked_R14 = {32{sel[14]}} & R14;
+assign masked_R15 = {32{sel[15]}} & R15;
+assign masked_R16 = {32{sel[16]}} & R16;
+assign masked_R17 = {32{sel[17]}} & R17;
+assign masked_R18 = {32{sel[18]}} & R18;
+assign masked_R19 = {32{sel[19]}} & R19;
+assign masked_R20 = {32{sel[20]}} & R20;
+assign masked_R21 = {32{sel[21]}} & R21;
+assign masked_R22 = {32{sel[22]}} & R22;
+assign masked_R23 = {32{sel[23]}} & R23;
+assign masked_R24 = {32{sel[24]}} & R24;
+assign masked_R25 = {32{sel[25]}} & R25;
+assign masked_R26 = {32{sel[26]}} & R26;
+assign masked_R27 = {32{sel[27]}} & R27;
+assign masked_R28 = {32{sel[28]}} & R28;
+assign masked_R29 = {32{sel[29]}} & R29;
+assign masked_R30 = {32{sel[30]}} & R30;
+assign masked_R31 = {32{sel[31]}} & R31;
+
+
+
+// OR all masked outputs together to get final bus
+assign bus = masked_R0  | masked_R1  | masked_R2  | masked_R3  |
+             masked_R4  | masked_R5  | masked_R6  | masked_R7  |
+             masked_R8  | masked_R9  | masked_R10 | masked_R11 |
+             masked_R12 | masked_R13 | masked_R14 | masked_R15 |
+             masked_R16 | masked_R17 | masked_R18 | masked_R19 |
+             masked_R20 | masked_R21 | masked_R22 | masked_R23 |
+             masked_R24 | masked_R25 | masked_R26 | masked_R27 |
+             masked_R28 | masked_R29 | masked_R30 | masked_R31;
 
 
 endmodule

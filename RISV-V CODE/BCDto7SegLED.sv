@@ -1,7 +1,7 @@
 module BCDto7SegLED
 (
 	input [11:0] BCD,
-	output [7:0] hundreds, tens, units
+	output [6:0] hundreds, tens, units
 );
 
 // Extract each BCD digit
@@ -26,22 +26,22 @@ endmodule
 module BCD_Decode
 (
 	input  [3:0] BCD,
-	output reg [7:0] seg
+	output reg [6:0] seg
 );
 
     always @(*) begin
         case (BCD)
-            4'b0000: seg = 8'b11000000;	// 0
-            4'b0001: seg = 8'b11111001;	// 1
-            4'b0010: seg = 8'b10100100;	// 2
-            4'b0011: seg = 8'b10110000;	// 3
-            4'b0100: seg = 8'b10011001;	// 4
-            4'b0101: seg = 8'b10010010;	// 5
-            4'b0110: seg = 8'b10000010;	// 6
-            4'b0111: seg = 8'b11111000;	// 7
-            4'b1000: seg = 8'b10000000;	// 8
-            4'b1001: seg = 8'b10010000;	// 9
-            default: seg = 8'b11111111;  // blank (all segments off)
+            4'b0000: seg = 7'b1000000;	// 0
+            4'b0001: seg = 7'b1111001;	// 1
+            4'b0010: seg = 7'b0100100;	// 2
+            4'b0011: seg = 7'b0110000;	// 3
+            4'b0100: seg = 7'b0011001;	// 4
+            4'b0101: seg = 7'b0010010;	// 5
+            4'b0110: seg = 7'b0000010;	// 6
+            4'b0111: seg = 7'b1111000;	// 7
+            4'b1000: seg = 7'b0000000;	// 8
+            4'b1001: seg = 7'b0010000;	// 9
+            default: seg = 7'b1111111;  // blank (all segments off)
         endcase
     end
 
