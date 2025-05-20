@@ -64,7 +64,7 @@ The instruction below is using for calculate FIBONNANCI, which i get value from 
 
 <br>
 
-Video using DE10-Standard for testing the result: 
+Video using DE10-Standard for testing the real application by calculating Fibonannci: 
 
 
 
