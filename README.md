@@ -8,7 +8,7 @@ Top-level diagram:
 
 <br><br>
 
-The project is successful build a RV32I with 34 integer instruction with all detail of it show as below: 
+The project is successful build a RV32I with 37 integer instruction with all detail of it show as below: 
 
 Instruction Set of RV32I:
 
@@ -62,9 +62,11 @@ The instruction below is using for calculate FIBONNANCI, which i get value from 
 
 ![Fibonannci Test Result](https://github.com/user-attachments/assets/5b70253b-8be1-4654-b2f9-2821e97186ca)
 
+<br>
+
 Video using DE10-Standard for testing the result: 
 
-<br>
+
 
 https://github.com/user-attachments/assets/3db09aaf-2cc8-4f75-a8eb-dbdb35399a21
 
