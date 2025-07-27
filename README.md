@@ -4,7 +4,7 @@
 
 Top-level diagram:
 
-![RISC-V diagram (self-draw)](https://github.com/user-attachments/assets/1c46f1ef-83d0-4dde-b162-200c80b9f5cb)
+<img width="3906" height="2561" alt="RiscV" src="https://github.com/user-attachments/assets/363a4ad2-13c0-4d26-9996-c0ac2605d40a" />
 
 <br><br>
 
@@ -20,7 +20,8 @@ To test the processor's functionality, we need to write instruction code that co
 
 Instruction for testing:
 
-![image](https://github.com/user-attachments/assets/b8157543-bd6c-4870-9202-7b59beb37806)
+<img width="803" height="901" alt="Screenshot 2025-07-27 131246" src="https://github.com/user-attachments/assets/5652db39-c34d-42ab-a5d1-4605607340b0" />
+
 
 <br>
 
