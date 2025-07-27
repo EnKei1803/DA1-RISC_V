@@ -51,11 +51,6 @@ Data Memory connect to I/O Block:
 
 ![Memory_IO](https://github.com/user-attachments/assets/2a30570f-eb66-44ad-8435-04bf47f5ce17)
 
-<br>
-
-I/O Block placement in CPU:
-
-![RISC-V diagram (self-draw)](https://github.com/user-attachments/assets/c8b40177-279e-4c05-b71b-ff8d6822870c)
 
 <br>
 
