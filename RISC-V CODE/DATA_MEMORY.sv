@@ -5,7 +5,7 @@ module DATA_MEMORY (
 	 input [31:0] IO_data,			// Data from external I/O
     input WE, 							// Write enable
 	 input [3:0] SLType,				//	Store-Load Type
-    output [31:0] RD, WD2			// Data read from memory
+    output [31:0] RD					// Data read from memory
 );
 
 /*
@@ -24,7 +24,7 @@ module DATA_MEMORY (
 
 
 // Internal wire 
-logic [31:0]RD1, RD2, WD1;
+logic [31:0]RD1, RD2, WD1, WD2;
 
 assign WD2 = WD | IO_data;
 
@@ -91,7 +91,7 @@ endmodule
 module EXTEND_SL(
 	input [2:0]		sel,
 	input [31:0]	Data_in,
-	output [31:0]	Data_out
+	output logic [31:0]	Data_out
 );
 
 
@@ -108,5 +108,4 @@ end
 
 
 endmodule 
-
 

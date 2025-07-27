@@ -7,10 +7,12 @@ module PC_COUNTER
   output logic [31:0] PC
 );
   
-  always_ff @(posedge clk or negedge nrst)
+  always_ff @(posedge clk)
     if (!nrst)
       PC <= 32'd0;
     else if (run)
       PC <= PCNext;
+	else
+      PC <= PC;
 
 endmodule 

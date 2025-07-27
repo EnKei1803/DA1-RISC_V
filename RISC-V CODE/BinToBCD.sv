@@ -64,7 +64,7 @@ module MUX_ADD3
 (
 	input s,
 	input [3:0] I0, I1,
-	output [3:0] Y
+	output logic [3:0] Y
 );
 
 

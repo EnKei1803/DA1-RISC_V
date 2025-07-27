@@ -1,8 +1,8 @@
 module EXTEND_UNIT 
 (
-	input logic [24:0] Instr,			// Range contaim Immediate [31:7]
+	input [24:0] Instr,			// Range contaim Immediate [31:7]
 	input [2:0] ImmSrc,			// Select which range contain Immediate			// Select Size and Signed or not
-	output [31:0] ImmExt			// Output of full Immediate
+	output logic [31:0] ImmExt			// Output of full Immediate
 );
 
 /*

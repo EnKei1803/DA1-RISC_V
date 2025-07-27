@@ -11,60 +11,57 @@ module REGISTER_FILE
 						R8,  R9,  R10, R11, R12, R13, R14, R15,
 						R16, R17, R18, R19, R20, R21, R22, R23,
 						R24, R25, R26, R27, R28, R29, R30, R31;
+	logic [31:1] WE;
+	logic [31:0] decoder_output;
 
+	// Select which REGISTER is taked value
+	logic [31:0] REG1, REG2, REG_S;
 
-// Select which REGISTER is taked value
-wire [31:0] REG1, REG2, REG_S;
+	// Decode to know which REGISTER is selected
+	DECODER_5_to_32 DECODER_5_to_32_REG1 (A1, REG1);
+	DECODER_5_to_32 DECODER_5_to_32_REG2 (A2, REG2);
 
-// Decode to know which REGISTER is selected
-DECODER_5_to_32 DECODER_5_to_32_REG1 (A1, REG1);
-DECODER_5_to_32 DECODER_5_to_32_REG2 (A2, REG2);
-
-DECODER_5_to_32 DECODER_5_to_32_REG_S (A3, decoder_output);
-											
-// Register ARRAY 0 to 31
-// Specially, R0 == 0 <=> ZeroREG
-
-wire [31:1] WE;
-wire [31:0] decoder_output;
-				 
+	DECODER_5_to_32 DECODER_5_to_32_REG_S (A3, decoder_output);
+												
+	// Register ARRAY 0 to 31
+	// Specially, R0 == 0 <=> ZeroREG				 
 	assign R0 = 32'b0;			
 	assign REG_S = decoder_output & ~32'b1;  			// Always disable R0 selection
 
 	assign WE[31:1] = REG_S[31:1] & {31{WE3}};		// Write enable for writen REGISTER
 	
-//									  R   Rin_en  clk  nrst  Q	
-REG_32bits	REG_32bits_R1  (WD3, WE[1],  clk, nrst, R1);
-REG_32bits	REG_32bits_R2  (WD3, WE[2],  clk, nrst, R2);
-REG_32bits	REG_32bits_R3  (WD3, WE[3],  clk, nrst, R3);
-REG_32bits	REG_32bits_R4  (WD3, WE[4],  clk, nrst, R4);
-REG_32bits	REG_32bits_R5  (WD3, WE[5],  clk, nrst, R5);
-REG_32bits	REG_32bits_R6  (WD3, WE[6],  clk, nrst, R6);
-REG_32bits	REG_32bits_R7  (WD3, WE[7],  clk, nrst, R7);
-REG_32bits	REG_32bits_R8  (WD3, WE[8],  clk, nrst, R8);
-REG_32bits	REG_32bits_R9  (WD3, WE[9],  clk, nrst, R9);
-REG_32bits	REG_32bits_R10 (WD3, WE[10], clk, nrst, R10);
-REG_32bits	REG_32bits_R11 (WD3, WE[11], clk, nrst, R11);
-REG_32bits	REG_32bits_R12 (WD3, WE[12], clk, nrst, R12);
-REG_32bits	REG_32bits_R13 (WD3, WE[13], clk, nrst, R13);
-REG_32bits	REG_32bits_R14 (WD3, WE[14], clk, nrst, R14);
-REG_32bits	REG_32bits_R15 (WD3, WE[15], clk, nrst, R15);
-REG_32bits	REG_32bits_R16 (WD3, WE[16], clk, nrst, R16);
-REG_32bits	REG_32bits_R17 (WD3, WE[17], clk, nrst, R17);
-REG_32bits	REG_32bits_R18 (WD3, WE[18], clk, nrst, R18);
-REG_32bits	REG_32bits_R19 (WD3, WE[19], clk, nrst, R19);
-REG_32bits	REG_32bits_R20 (WD3, WE[20], clk, nrst, R20);
-REG_32bits	REG_32bits_R21 (WD3, WE[21], clk, nrst, R21);
-REG_32bits	REG_32bits_R22 (WD3, WE[22], clk, nrst, R22);
-REG_32bits	REG_32bits_R23 (WD3, WE[23], clk, nrst, R23);
-REG_32bits	REG_32bits_R24 (WD3, WE[24], clk, nrst, R24);
-REG_32bits	REG_32bits_R25 (WD3, WE[25], clk, nrst, R25);
-REG_32bits	REG_32bits_R26 (WD3, WE[26], clk, nrst, R26);
-REG_32bits	REG_32bits_R27 (WD3, WE[27], clk, nrst, R27);
-REG_32bits	REG_32bits_R28 (WD3, WE[28], clk, nrst, R28);
-REG_32bits	REG_32bits_R29 (WD3, WE[29], clk, nrst, R29);
-REG_32bits	REG_32bits_R30 (WD3, WE[30], clk, nrst, R30);
-REG_32bits	REG_32bits_R31 (WD3, WE[31], clk, nrst, R31);
+//									   R   		Rin_en  		  clk  nrst    Q	
+REG_32bits REG_32bits_R1  (.R(WD3), .Rin_en(WE[1]), .clk(clk), .nrst(nrst), .Q(R1));
+REG_32bits REG_32bits_R2  (.R(WD3), .Rin_en(WE[2]), .clk(clk), .nrst(nrst), .Q(R2));
+REG_32bits REG_32bits_R3  (.R(WD3), .Rin_en(WE[3]), .clk(clk), .nrst(nrst), .Q(R3));
+REG_32bits REG_32bits_R4  (.R(WD3), .Rin_en(WE[4]), .clk(clk), .nrst(nrst), .Q(R4));
+REG_32bits REG_32bits_R5  (.R(WD3), .Rin_en(WE[5]), .clk(clk), .nrst(nrst), .Q(R5));
+REG_32bits REG_32bits_R6  (.R(WD3), .Rin_en(WE[6]), .clk(clk), .nrst(nrst), .Q(R6));
+REG_32bits REG_32bits_R7  (.R(WD3), .Rin_en(WE[7]), .clk(clk), .nrst(nrst), .Q(R7));
+REG_32bits REG_32bits_R8  (.R(WD3), .Rin_en(WE[8]), .clk(clk), .nrst(nrst), .Q(R8));
+REG_32bits REG_32bits_R9  (.R(WD3), .Rin_en(WE[9]), .clk(clk), .nrst(nrst), .Q(R9));
+REG_32bits REG_32bits_R10 (.R(WD3), .Rin_en(WE[10]),.clk(clk), .nrst(nrst), .Q(R10));
+REG_32bits REG_32bits_R11 (.R(WD3), .Rin_en(WE[11]),.clk(clk), .nrst(nrst), .Q(R11));
+REG_32bits REG_32bits_R12 (.R(WD3), .Rin_en(WE[12]),.clk(clk), .nrst(nrst), .Q(R12));
+REG_32bits REG_32bits_R13 (.R(WD3), .Rin_en(WE[13]),.clk(clk), .nrst(nrst), .Q(R13));
+REG_32bits REG_32bits_R14 (.R(WD3), .Rin_en(WE[14]),.clk(clk), .nrst(nrst), .Q(R14));
+REG_32bits REG_32bits_R15 (.R(WD3), .Rin_en(WE[15]),.clk(clk), .nrst(nrst), .Q(R15));
+REG_32bits REG_32bits_R16 (.R(WD3), .Rin_en(WE[16]),.clk(clk), .nrst(nrst), .Q(R16));
+REG_32bits REG_32bits_R17 (.R(WD3), .Rin_en(WE[17]),.clk(clk), .nrst(nrst), .Q(R17));
+REG_32bits REG_32bits_R18 (.R(WD3), .Rin_en(WE[18]),.clk(clk), .nrst(nrst), .Q(R18));
+REG_32bits REG_32bits_R19 (.R(WD3), .Rin_en(WE[19]),.clk(clk), .nrst(nrst), .Q(R19));
+REG_32bits REG_32bits_R20 (.R(WD3), .Rin_en(WE[20]),.clk(clk), .nrst(nrst), .Q(R20));
+REG_32bits REG_32bits_R21 (.R(WD3), .Rin_en(WE[21]),.clk(clk), .nrst(nrst), .Q(R21));
+REG_32bits REG_32bits_R22 (.R(WD3), .Rin_en(WE[22]),.clk(clk), .nrst(nrst), .Q(R22));
+REG_32bits REG_32bits_R23 (.R(WD3), .Rin_en(WE[23]),.clk(clk), .nrst(nrst), .Q(R23));
+REG_32bits REG_32bits_R24 (.R(WD3), .Rin_en(WE[24]),.clk(clk), .nrst(nrst), .Q(R24));
+REG_32bits REG_32bits_R25 (.R(WD3), .Rin_en(WE[25]),.clk(clk), .nrst(nrst), .Q(R25));
+REG_32bits REG_32bits_R26 (.R(WD3), .Rin_en(WE[26]),.clk(clk), .nrst(nrst), .Q(R26));
+REG_32bits REG_32bits_R27 (.R(WD3), .Rin_en(WE[27]),.clk(clk), .nrst(nrst), .Q(R27));
+REG_32bits REG_32bits_R28 (.R(WD3), .Rin_en(WE[28]),.clk(clk), .nrst(nrst), .Q(R28));
+REG_32bits REG_32bits_R29 (.R(WD3), .Rin_en(WE[29]),.clk(clk), .nrst(nrst), .Q(R29));
+REG_32bits REG_32bits_R30 (.R(WD3), .Rin_en(WE[30]),.clk(clk), .nrst(nrst), .Q(R30));
+REG_32bits REG_32bits_R31 (.R(WD3), .Rin_en(WE[31]),.clk(clk), .nrst(nrst), .Q(R31));
 
 
 

@@ -4,7 +4,7 @@ module IO_Block
 	input clk, nrst,
 	input [31:0] A,			// Address 
 	input [31:0] RD,			// Write Data (IN)
-	input WE, MREQ, 			// Write Enbale
+	input WE, IOREQ, 			// Write Enbale
 	output [31:0] IO_Data,	// Read Data (OUT)
 	
 	// IN-OUT from device
@@ -12,7 +12,6 @@ module IO_Block
 	output [6:0] hundreds,	// Value send to 7SegLed
 					 tens, 
 					 units,
-	output WE1,
 	output [31:0] RD_7SegLed
 );
 
@@ -23,10 +22,10 @@ logic [31:0] RD_SW, RD_7Seg;
 
 // CSE
 Select_SW		IO_SW1		(.addr_in(A), .Select_SW(Select_SW1));
-assign Select_SW = Select_SW1 & MREQ;
+assign Select_SW = Select_SW1 & IOREQ;
 
 Select_7SegLed	IO_7SegLed1	(.addr_in(A), .Select_7SegLed(Select_7SegLed1));
-assign Select_7SegLed = Select_7SegLed1 & MREQ;
+assign Select_7SegLed = Select_7SegLed1 & IOREQ;
 
 // I/O
 IO_SW	IN_OUT_SW	(
@@ -45,7 +44,6 @@ IO_7SegLed	IN_OUT_7SegLed(
 									.hundreds(hundreds),
 									.tens(tens),
 									.units(units),
-									.WE1(WE1),
 									.clk(clk),
 									.nrst(nrst)
 									
@@ -105,19 +103,17 @@ module IO_7SegLed
 (
 	input CSE, 							// Chip Set Enable 
 	input clk, nrst, WE,
-	input [31:0] WD,					// Value use for calculate before display
-	output [31:0] RD,					// Data out (use for store in memory)
-	output [31:0] RD_7SegLed,
-	output [6:0] hundreds,			// Value send to 7SegLed
-					 tens, 
-					 units,
-	output WE1
+	input [31:0] WD,								// Value use for calculate before display
+	output 			[31:0] RD,					// Data out (use for store in memory)
+	output logic	[31:0] RD_7SegLed,
+	output			[6:0] hundreds,			// Value send to 7SegLed
+								tens, 
+								units
 );
 
 // Wire 
-// logic [31:0] RD_7SegLed;
 logic [11:0] BCD;
-//logic WE1;
+logic WE1;
 
 
 // Calculate WE1

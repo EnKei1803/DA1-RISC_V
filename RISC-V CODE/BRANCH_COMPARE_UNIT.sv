@@ -2,7 +2,7 @@ module BRANCH_COMPARE_UNIT
 (
 	input [2:0]Br_Ctrl,
 	input [31:0] SrcA, SrcB,
-	output BrOut,EQ, NE, LT, GE
+	output BrOut
 );
 
 /*
@@ -25,7 +25,7 @@ module BRANCH_COMPARE_UNIT
 			
 */
    logic GT;
-	logic LT_U, GT_U; 
+	logic LT_U, GT_U, EQ, NE, LT, GE; 
 // Calculate condition
 COMPARATOR_32bits	COMPARATOR	(SrcA, SrcB, EQ, LT_U, GT_U);
 
@@ -79,7 +79,7 @@ module MUX_4x1_BR
 (
 	input [1:0]s,
 	input I0, I1, I2, I3,
-	output Y
+	output logic Y
 );
 
     always @(*) begin

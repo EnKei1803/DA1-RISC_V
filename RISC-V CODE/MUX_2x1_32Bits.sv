@@ -2,7 +2,7 @@ module MUX_2x1_32Bits
 (
 	input s,
 	input [31:0] I0, I1,
-	output [31:0] Y
+	output logic [31:0] Y
 );
 
     always @(*) begin
