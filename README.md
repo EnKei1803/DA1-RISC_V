@@ -1,4 +1,4 @@
-# A R32I Single Cycle RISC_V Model 
+# A R32I PIPELINE Single Cycle RISC_V Model 
 
 <br><br><br>
 
@@ -26,10 +26,10 @@ Instruction for testing:
 
 Result Test:
 
-![0s - 120ns](https://github.com/user-attachments/assets/d3eac833-d2e3-44db-a73b-29d98b741fdc)
-![120ns - 240ns](https://github.com/user-attachments/assets/eca281e5-6e1c-47ab-ba8c-0a149723fb52)
-![240ns - 360ns](https://github.com/user-attachments/assets/99759669-f6dc-4bc9-8945-ac67e525cce0)
-![360ns - 480ns](https://github.com/user-attachments/assets/8e3da76b-e08c-4ccf-a428-11dce00fac6b)
+<img width="1920" height="1080" alt="Pipeline 0ns - 240ns" src="https://github.com/user-attachments/assets/0ddb239b-d0fe-4b44-998c-611f728d0b79" />
+<img width="1920" height="1080" alt="Pipeline 240ns - 480ns" src="https://github.com/user-attachments/assets/6d85634d-ea06-456e-8f52-cc4ce0b671d8" />
+<img width="1920" height="1080" alt="Pipeline 480ns - 720ns" src="https://github.com/user-attachments/assets/84adf2d2-6d98-4745-b3b9-65bc24cc99dd" />
+<img width="1920" height="1080" alt="Pipeline 720ns - 960ns" src="https://github.com/user-attachments/assets/73e8664d-6456-45d6-853b-1e8c7b3e6415" />
 
 <br><br><br><br>
 
