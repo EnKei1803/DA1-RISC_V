@@ -36,7 +36,7 @@ Result Test:
 
 ## I/O for RISC-V 
 
-After building a RISC-V processor, we need to establish methods for I/O communication with the PCU to ensure usability. This requires designing an I/O Addressing Map to facilitate effective interaction.
+After building a RISC-V processor, we need to establish methods for I/O communication with the CPU to ensure usability. This requires designing an I/O Addressing Map to facilitate effective interaction.
 
 ![Addressing IO Device](https://github.com/user-attachments/assets/3d175510-7d18-4fb1-86ca-8b521f737929)
 
