@@ -8,7 +8,7 @@ module BRANCH_COMPARE_UNIT
 /*
 
 			|-----------------------------|-----|-----|-----|
-			|				BRANCH				|	s2	|	s1	|	s0	|
+			|				BRANCH		  |	s2	|  s1 |	s0	|
 			|-----------------------------|-----|-----|-----|
 			|EQUAL 							=	|	0	|	0	|	0	|
 			|-----------------------------|-----|-----|-----|
@@ -42,18 +42,18 @@ COMPARATOR_32bits	COMPARATOR	(SrcA, SrcB, EQ, LT_U, GT_U);
 
 
 
-																 AxB	0  
-																_|____|_
-																\ 0  1 /__Br_Ctrl[1] ( 0: Signed, 1: UnSigned )
-																 \____/
-																	|
-																   |
-								GT_U  SG		  LT_U  SL		|
-								_|____|_			_|____|_		|
-					Sel[0]___\ 0  1 /_______\ 0  1 /__ sel
-								 \____/			 \____/
-									 |				 	|
-									GT					LT
+														 AxB	0  
+														 _|____|_
+														 \ 0  1 /__Br_Ctrl[1] ( 0: Signed, 1: UnSigned )
+														  \____/
+															|
+															|
+								GT_U  SG		  LT_U  SL	|
+								_|____|_	   _|____|_		|
+					   Sel[0]___\ 0  1 /_______\ 0  1 /__ sel
+								 \____/			\____/
+									 |			   |
+									GT			   LT
 
 */
 
@@ -92,4 +92,5 @@ module MUX_4x1_BR
         endcase
     end	
 	 
+
 endmodule 
